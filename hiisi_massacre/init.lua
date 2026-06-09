@@ -1,0 +1,11 @@
+--hub area
+	--npc after the player goes away and returns (explains what to do; use talkit for speech, should be the headless dude from YAWB concept; is present on new game afterwards)
+	--crafting system for custom perks and plot items (use both pixel materials and items on the floor)
+	--shop for spells
+	--ability to transfer equipment between saves
+--mapgen
+	--10 circles, with each one requiring progressively harder to obtain unlock items/conditions
+	--first 5 use vanilla enemies, the latter 5 introduce worse enemies
+	--escaping and providing rare materials allows one to repair the shop antenna (this turns shop 100% free)
+	--custom ost through marshall
+	--hybrid gen rules (use wang for baseline shape and then manually spawn in room geometries from a pool)
