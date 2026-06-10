@@ -1,16 +1,6 @@
 <MagicNumbers 
-	BIOME_MAP="mods/hiisi_massacre/files/biome_map.lua" 
+	BIOME_MAP="mods/hiisi_massacre/files/biome_map.png"
+	DESIGN_PLAYER_START_POS_X="0"
+	DESIGN_PLAYER_START_POS_Y="18688"
+	_DEBUG_DONT_SAVE_MAGIC_NUMBERS="1"
 ></MagicNumbers>
-
-<!--
-	DESIGN_PLAYER_START_POS_X="160" 
-	DESIGN_PLAYER_START_POS_Y="10540"
-
-1324
-2861
-4921
-6445
-8491
-10540
-
--->

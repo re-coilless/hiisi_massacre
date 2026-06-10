@@ -1,0 +1,33 @@
+<Biome>
+	<Topology 
+		name="Prison Citadel"
+		type="BIOME_WANG_TILE"
+		background_image="mods/hiisi_massacre/files/terrain/background.png"
+		background_edge_left="mods/hiisi_massacre/files/terrain/background_l.png"
+		background_edge_right="mods/hiisi_massacre/files/terrain/background_r.png"
+		background_edge_top="mods/hiisi_massacre/files/terrain/background_t.png"
+		background_edge_bottom="mods/hiisi_massacre/files/terrain/background_b.png"
+		background_edge_priority="10"     
+		limit_background_image="0"
+		noise_biome_edges="1"
+		
+		wang_template_file="mods/hiisi_massacre/files/terrain/wangs.png" 
+		lua_script="mods/hiisi_massacre/files/terrain/init.lua"
+		wang_map_width="256"
+		wang_map_height="256"
+		audio_music_2=""
+		audio_ambience="crypt"
+	></Topology>
+	
+	<Materials name="citadel" >
+		<MaterialComponent 
+			_enabled="1" 
+			is_rare="0" 
+			limit_y="0" 
+			material_index="10" 
+			material_max="3.5" 
+			material_min="0.5" 
+			material_name="steel_static"
+		></MaterialComponent>
+	</Materials>
+</Biome>

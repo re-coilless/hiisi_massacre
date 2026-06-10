@@ -3,8 +3,8 @@
 	description="Hardcore combat focused gamemode with tiered exploration and crafting system."
 	ui_newgame_name="Hiisi Massacre"
 	ui_newgame_description="Explore a spralling megastructure of a Hiisi design."
-	ui_newgame_gfx_banner_bg="mods/hiisi_massacre/files/pics/menu_banner_background.png"
-	ui_newgame_gfx_banner_fg="mods/hiisi_massacre/files/pics/menu_banner_overlay.png"
+	ui_newgame_gfx_banner_bg="mods/hiisi_massacre/files/banner_bg.png"
+	ui_newgame_gfx_banner_fg="mods/hiisi_massacre/files/banner_fg.png"
 	request_no_api_restrictions="0" 
 	is_game_mode="1"
 ></Mod>
