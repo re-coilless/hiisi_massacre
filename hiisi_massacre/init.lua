@@ -21,9 +21,25 @@ end
 	--shop for spells
 	--ability to transfer equipment between saves
 --mapgen
+	--made from sparematter (penman should inject this)
 	--10 circles, with each one requiring progressively harder to obtain unlock items/conditions
 	--first 5 use vanilla enemies, the latter 5 introduce worse enemies
 	--escaping and providing rare materials allows one to repair the shop antenna (this turns shop 100% free)
 	--custom ost through marshall
 	--hybrid gen rules (use wang for baseline shape and then manually spawn in room geometries from a pool)
 	--add a map that is created during the terrain gen step
+--rooms
+	--horizontal room should have their cielings patched with phantom platforms
+	--locked doors with keys in containers
+	--dead ends must always be locked and always have loot
+	--do pathfinding on the obtained map and unlock a random door if one cannot explore the entire region
+	--locked or optinally locked rooms should have only one true entrance and one true exit
+	--add bg doors that teleport between two locations (unlocked by pulling a lever at both sides)
+	--archetypes: combat, storage, hallways, utility, volatile
+	--variants: easter eggs, ruins, ambush (enemy spawns have a chance to being retriggered), prison, armory
+--unique items
+	--return gate
+	--marker beacons + chalk
+	--concrete sprayer
+	--breach charge
+	--supply crate
