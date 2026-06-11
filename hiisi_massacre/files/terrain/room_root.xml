@@ -1,0 +1,9 @@
+<Entity tags="room_root" >
+	<StreamingKeepAliveComponent>
+	</StreamingKeepAliveComponent>
+	
+	<VariableStorageComponent
+		name="uid"
+		value_string="surely"
+	></VariableStorageComponent>
+</Entity>

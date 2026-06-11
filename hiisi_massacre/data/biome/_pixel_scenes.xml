@@ -2,5 +2,17 @@
 	<PixelSceneFiles>
 	</PixelSceneFiles>
 	<mBufferedPixelScenes>
+		<PixelScene
+			pos_x="-256" pos_y="18432"
+			clean_area_before="0" skip_biome_checks="1" skip_edge_textures="0"
+			background_filename="mods/hiisi_massacre/files/terrain/prison_bg.png"
+			colors_filename="mods/hiisi_massacre/files/terrain/prison_vis.png"
+			material_filename="mods/hiisi_massacre/files/terrain/prison_phys.png"
+		></PixelScene>
+		
+		<PixelScene
+			pos_x="0" pos_y="18688"
+			just_load_an_entity="mods/hiisi_massacre/files/terrain/room_root.xml"
+		></PixelScene>
 	</mBufferedPixelScenes>
 </PixelScenes>
