@@ -28,7 +28,7 @@ function cell_gen( x, y, is_vertical )
 
 	--archetypes (inherent geometry; done through pixel scenes loaded on room gen): combat, storage, hallways, utility, volatile
 	--variants (enemies and loot, finer geometry): funny, ruins, ambush (enemy spawns have a chance to being retriggered), prison, armory
-	--circles (additonal content layers): Prologue (normal), Wastes (toxic), Abyss (flooded), Ruins (crumbling), Gehenna (burning with smoke everywhere), Crux (no enemies spawn statically, they come out of portals that open randomly + blaring alarms), Buffer (lots of turrents and heavily fortified positions), Masquerade (normal enemies are bursting into abominations that are hostile to everything), Noose (bosses everywhere), Gates (very different enemies + all doors are always locked)
+	--circles (additonal content layers): Prologue (normal), Wastes (toxic), Abyss (flooded), Ruins (crumbling), Gehenna (burning with smoke everywhere), Crux (no enemies spawn statically, they come out of portals that open randomly + blaring alarms), Buffer (lots of turrents and heavily fortified positions), Masquerade (normal buffed enemies are bursting into abominations on death that are hostile to everything), Noose (bosses everywhere), Gates (very different enemies + all doors are always locked)
 
 	--gates are always located in the same spots (either to the left or to the right), rotated 180 between each one (the initial orientation is randomized)
 

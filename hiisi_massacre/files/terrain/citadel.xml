@@ -1,6 +1,6 @@
 <Biome>
 	<Topology
-		name="Prison Citadel"
+		name="Prologue"
 		type="BIOME_WANG_TILE"
 		background_image="mods/hiisi_massacre/files/terrain/background.png"
 		background_edge_left="mods/hiisi_massacre/files/terrain/background_l.png"

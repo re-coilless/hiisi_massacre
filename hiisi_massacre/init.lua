@@ -13,12 +13,12 @@ function OnModInit()
 	]])
 	pen.magic_write( "data/biome/_biomes_all.xml", tostring( xml ))
 
-	--custom ost through marshall (at least 5 energy-enabled songs per layer + an additional hub one)
 	--do rings with gates that are open for now
 	--lua walls should be a vector module
 
 	--enemy spawning
 	--allow trading unique currency for hp, wands and spells
+	--display the circle number once entered for the first time
 
 	--ability to transfer equipment between saves
 	--the main resource is the powder absorbed by player that is flammable and is dissolved on contact with water (add new ui element for it)
