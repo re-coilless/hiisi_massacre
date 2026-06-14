@@ -16,7 +16,7 @@
 		wang_map_width="256"
 		wang_map_height="256"
 		audio_music_2=""
-		audio_ambience="crypt"
+		audio_ambience="hills"
 
     	pixel_scene="0"
     	coarse_map_force_terrain="0"
@@ -24,7 +24,11 @@
 		fat_biome_edges="1"
 		has_rain="0"
 		mInsideNoiseFBM="0"
-	></Topology>
+		><modifiers
+			fog_of_war_delta="5"
+			dust_amount="0.25"
+		></modifiers>
+	</Topology>
 	
 	<Materials name="citadel" >
 		<MaterialComponent
