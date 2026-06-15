@@ -14,7 +14,6 @@ function OnModInit()
 	pen.magic_write( "data/biome/_biomes_all.xml", tostring( xml ))
 
 	--lua walls should be a vector module
-	--turn off mob gold drops
 
 	--allow trading unique currency for hp, wands and spells
 	--display the circle number once entered for the first time + manually shorten the delay to 0 on first entry
@@ -50,7 +49,14 @@ function OnWorldPreUpdate()
 		for i = 1,pen.magic_storage( room_id, "mob_count", "value_int" ) do
 			local enemy = pen.t.random( enemies, circle_id ) --sfx: https://www.youtube.com/watch?v=xe4aagn6q10
 			local e_x, e_y = pen.magic_spawner( r_x, r_y, shape, { 10, 20 }, { exc = {{ x, y, 20 }}})
-			if( pen.vld( e_x )) then EntityLoad( enemy.path, e_x, e_y ) end
+			if( pen.vld( e_x )) then
+				local eid = EntityLoad( enemy.path, e_x, e_y )
+				pen.t.loop( EntityGetComponentIncludingDisabled( eid, "LuaComponent" ), function( i,comp )
+					if( ComponentGetValue2( comp, "script_death" ) == "data/scripts/items/drop_money.lua" ) then
+						EntityRemoveComponent( eid, comp )
+					end
+				end)
+			end
 		end
 
 		pen.magic_storage( room_id, "is_occupied", "value_bool", true )
