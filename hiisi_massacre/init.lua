@@ -14,6 +14,7 @@ function OnModInit()
 	pen.magic_write( "data/biome/_biomes_all.xml", tostring( xml ))
 
 	--lua walls should be a vector module
+	--port out key n40 firearm sections to index (add a section of "extra" for others to use)
 
 	--allow trading unique currency for hp, wands and spells
 	--display the circle number once entered for the first time + manually shorten the delay to 0 on first entry
