@@ -1,3 +1,4 @@
+ModMaterialsFileAdd( "mods/hiisi_massacre/files/terrain/matter.xml" )
 ModMagicNumbersFileAdd( "mods/hiisi_massacre/files/magic_numbers.xml" )
 
 function OnModInit()
@@ -13,11 +14,18 @@ function OnModInit()
 	]])
 	pen.magic_write( "data/biome/_biomes_all.xml", tostring( xml ))
 
-	--lua walls should be a vector module
+	--basic room geometry (combat, storage, hallways, utility, volatile), 2 variants per room per each
+	--align hub with the wang grid
+	--add gates through the rings (rotate 180 between rings)
+	--custom currency + loot crates
+	--basic shop + meta storage for loot
+
+	--lua walls should be a vector module (do a universal prop module that allows for buttons and such with culling)
 	--port out key n40 firearm sections to index (add a section of "extra" for others to use)
 
 	--allow trading unique currency for hp, wands and spells
 	--display the circle number once entered for the first time + manually shorten the delay to 0 on first entry
+	--random wand gen is done using pen.simulate plinko thing with an ability to shake
 
 	--ability to transfer equipment between saves
 	--the main resource is the powder absorbed by player that is flammable and is dissolved on contact with water (add new ui element for it; spawns in open crates)

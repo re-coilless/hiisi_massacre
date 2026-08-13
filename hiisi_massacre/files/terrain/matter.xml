@@ -1,0 +1,75 @@
+<Materials>
+	<CellData
+		name="steel_stable"
+		ui_name="$mat_steel_static"
+		ui_desc=""
+		
+		cell_type="liquid"
+		liquid_sand="1"
+		liquid_static="1"
+		platform_type="1"
+		liquid_gravity="1.2"
+		solid_friction="0.75"
+		wang_color="ff40404a"
+		tags="[static],[corrodible],[rust],[alchemy],[meltable_metal_generic],[solid],[earth]"
+		show_in_creative_mode="1"
+		
+		hp="130000"
+		durability="12"
+		density="10"
+		electrical_conductivity="1"
+		
+		on_fire="0"
+		burnable="0"
+		
+		audio_physics_material_event="metalhollow"
+		audio_physics_material_wall="metalwall"
+		audio_physics_material_solid="metalhollow"
+		
+		wang_noise_type="0"
+		wang_curvature="0.25"
+		wang_noise_percent="0.0"
+		
+		><Graphics
+			color="ff404040"
+			pixel_all_around="ff404040"
+			texture_file="data/materials_gfx/steelpanel.png"
+			
+			><Edge>
+				<EdgeGraphics
+					overwrite="0" percent="1" z="1"
+					type="CARDINAL_DIRECTIONS" color="ff233112"
+					require_same_material="0" require_same_material_type="1"
+					
+					><Images>
+						<Image
+							filename="data/materials_gfx/edge_files/edge_steelpanel_hor.png"
+							do_only_horizontal_stripe="1" do_only_vertical_stripe="0"
+							min_angle="45" max_angle="135"
+						></Image>
+						<Image
+							filename="data/materials_gfx/edge_files/edge_steelpanel_ver.png"
+							do_only_horizontal_stripe="0" do_only_vertical_stripe="1"
+							min_angle="135" max_angle="225"
+						></Image>
+						<Image
+							filename="data/materials_gfx/edge_files/edge_steelpanel_hor.png"
+							do_only_horizontal_stripe="1" do_only_vertical_stripe="0"
+							min_angle="225" max_angle="315"
+						></Image>
+						<Image
+							filename="data/materials_gfx/edge_files/edge_steelpanel_ver.png"
+							do_only_horizontal_stripe="0" do_only_vertical_stripe="1"
+							min_angle="315" max_angle="360"
+						></Image>
+						<Image
+							filename="data/materials_gfx/edge_files/edge_steelpanel_ver.png"
+							do_only_horizontal_stripe="0" do_only_vertical_stripe="1"
+							min_angle="0" max_angle="45"
+						></Image>
+					</Images>
+				</EdgeGraphics>
+			</Edge>
+		</Graphics>
+	</CellData>
+</Materials>

@@ -2,8 +2,5 @@
 	<StreamingKeepAliveComponent>
 	</StreamingKeepAliveComponent>
 	
-	<VariableStorageComponent
-		name="uid"
-		value_string="surely"
-	></VariableStorageComponent>
+	<VariableStorageComponent name="uid" value_string="surely" />
 </Entity>

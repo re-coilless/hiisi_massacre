@@ -12,7 +12,7 @@
 		
 		<PixelScene
 			pos_x="0" pos_y="18688"
-			just_load_an_entity="mods/hiisi_massacre/files/terrain/room_root.xml"
+			just_load_an_entity="mods/hiisi_massacre/files/terrain/root.xml"
 		></PixelScene>
 	</mBufferedPixelScenes>
 </PixelScenes>
