@@ -38,7 +38,7 @@
 			material_index="10"
 			material_max="10"
       		material_min="-10"
-			material_name="steel_static"
+			material_name="steel_stable"
 			is_polygon="1"
 			><polygon>
 				<Vec2 x="-0.001" y="-0.001" />

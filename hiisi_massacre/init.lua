@@ -13,8 +13,7 @@ function OnModInit()
 		></Biome>
 	]])
 	pen.magic_write( "data/biome/_biomes_all.xml", tostring( xml ))
-
-	--basic room geometry (combat, storage, hallways, utility, volatile), 2 variants per room per each
+	
 	--align hub with the wang grid
 	--add gates through the rings (rotate 180 between rings)
 	--custom currency + loot crates

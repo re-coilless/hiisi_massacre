@@ -64,9 +64,9 @@ RegisterSpawnFunction( 0xff1aaaef, "cell_init_b30" )
 RegisterSpawnFunction( 0xff1aaafa, "cell_init_b31" )
 RegisterSpawnFunction( 0xff1aaafb, "cell_init_b32" )
 
---archetypes (inherent geometry; done through pixel scenes loaded on room gen): combat, storage, hallways, utility, volatile
+--archetypes (inherent geometry; done through pixel scenes loaded on room gen): combat (platforms and cover), hallway (narrow passages and route obstructions), storage (small rooms and lots of doors), brewery (glass tanks with random liquids and useful props), volatile (physical props, explosives and large wood sections)
 --variants (enemies and loot, finer geometry): funny, ruins, ambush (enemy spawns have a chance to being retriggered), prison, armory
---circles (additonal content layers): Prologue (normal), Wastes (toxic), Abyss (flooded), Ruins (crumbling), Gehenna (burning with smoke everywhere), Crux (no enemies spawn statically, they come out of portals that open randomly + blaring alarms), Buffer (lots of turrents and heavily fortified positions), Masquerade (normal buffed enemies are bursting into abominations on death that are hostile to everything), Noose (bosses everywhere), Gates (very different enemies + all doors are always locked)
+--circles (additonal content layers, materials and decorations): Prologue (normal), Wastes (toxic), Abyss (flooded), Ruins (crumbling), Gehenna (burning with smoke everywhere), Crux (no enemies spawn statically, they come out of portals that open randomly + blaring alarms), Buffer (lots of turrents and heavily fortified positions), Masquerade (normal buffed enemies are bursting into abominations on death that are hostile to everything), Noose (bosses everywhere), Gates (very different enemies + all doors are always locked)
 
 function cell_gen( x, y, is_vertical, type )
 	local may_gen = true
@@ -78,12 +78,14 @@ function cell_gen( x, y, is_vertical, type )
 
 	if( not( may_gen )) then return end
 	--unique room bgs are done through entity sprites
+	--different room archetypes should have different enemy numbers
 
 	--horizontal room should have their cielings patched with phantom platforms
 	--locked doors with keys in containers (keys are universal)
 	--dead ends must always be locked and always have loot
 	--locked or optinally locked rooms should have only one true entrance and one true exit (spawn in hatches)
 	--add bg doors that teleports between two locations (unlocked by pulling a lever at both sides)
+	--ladders
 
 	local is_valid, circle_id = true, 0
 	local root_id = ( EntityGetWithTag( "room_root" ) or {})[1]
@@ -110,10 +112,11 @@ function cell_gen( x, y, is_vertical, type )
 	pen.magic_storage( id, "mob_count", "value_int", pen.random( 0, 7 ))
 	if( not( is_valid )) then pen.magic_storage( id, "is_occupied", "value_bool", true ) end
 
-	local is_alt = pen.vrandom( x + y, 1, 10 ) == 10
+	local is_alt = false--pen.vrandom( x + y, 1, 10 ) == 10
 	local off_x, off_y = is_vertical and 70 or 140, is_vertical and 140 or 70
 	local path = "mods/hiisi_massacre/files/rooms/cell_"..type..( is_alt and "b" or "a" ).."_"
-	-- LoadPixelScene( path.."phys.png", path.."vis.png", x - off_x, y - off_y, path.."bg.png", true, false )
+	local vis_path = "mods/hiisi_massacre/files/rooms/cell_"..( is_vertical and "b" or "a" ).."_vis.png"
+	-- LoadPixelScene( path.."phys.png", vis_path, x - off_x, y - off_y, nil, true, false )
 end
 
 for i = 1,( 16 + 32 ) do
