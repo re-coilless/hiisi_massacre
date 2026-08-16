@@ -64,7 +64,7 @@ RegisterSpawnFunction( 0xff1aaaef, "cell_init_b30" )
 RegisterSpawnFunction( 0xff1aaafa, "cell_init_b31" )
 RegisterSpawnFunction( 0xff1aaafb, "cell_init_b32" )
 
---archetypes (inherent geometry; done through pixel scenes loaded on room gen): combat (platforms and cover), hallway (narrow passages and route obstructions), storage (small rooms and lots of doors), brewery (glass tanks with random liquids and useful props), volatile (physical props, explosives and large wood sections)
+--archetypes (inherent geometry; done through pixel scenes loaded on room gen): combat (platforms and cover), hallway (narrow passages and route obstructions), storage (small rooms and lots of doors), brewery (glass tanks with random liquids and useful props), volatile (suspended sections, explosives and lots of wood)
 --variants (enemies and loot, finer geometry): funny, ruins, ambush (enemy spawns have a chance to being retriggered), prison, armory
 --circles (additonal content layers, materials and decorations): Prologue (normal), Wastes (toxic), Abyss (flooded), Ruins (crumbling), Gehenna (burning with smoke everywhere), Crux (no enemies spawn statically, they come out of portals that open randomly + blaring alarms), Buffer (lots of turrents and heavily fortified positions), Masquerade (normal buffed enemies are bursting into abominations on death that are hostile to everything), Noose (bosses everywhere), Gates (very different enemies + all doors are always locked)
 
@@ -112,11 +112,23 @@ function cell_gen( x, y, is_vertical, type )
 	pen.magic_storage( id, "mob_count", "value_int", pen.random( 0, 7 ))
 	if( not( is_valid )) then pen.magic_storage( id, "is_occupied", "value_bool", true ) end
 
+	local matter_rng = {
+		["fff0bbaa"] = { --passive
+			"water", "oil", "alcohol", },
+		["fff0bbbb"] = { --dangeours
+			"radioactive_liquid" },
+		["fff0bbcc"] = { --magic
+			 },
+		["fff0bbdd"] = { --chaos
+			 },
+	}
+
+	--vis and bg are optinal, check for file existance
 	local is_alt = false--pen.vrandom( x + y, 1, 10 ) == 10
 	local off_x, off_y = is_vertical and 70 or 140, is_vertical and 140 or 70
 	local path = "mods/hiisi_massacre/files/rooms/cell_"..type..( is_alt and "b" or "a" ).."_"
 	local vis_path = "mods/hiisi_massacre/files/rooms/cell_"..( is_vertical and "b" or "a" ).."_vis.png"
-	-- LoadPixelScene( path.."phys.png", vis_path, x - off_x, y - off_y, nil, true, false )
+	-- LoadPixelScene( path.."phys.png", vis_path, x - off_x, y - off_y, nil, true, false, matter_rng )
 end
 
 for i = 1,( 16 + 32 ) do
