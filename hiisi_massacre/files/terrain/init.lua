@@ -87,20 +87,21 @@ function cell_gen( x, y, is_vertical, type )
 	--add bg doors that teleports between two locations (unlocked by pulling a lever at both sides)
 	--ladders
 
-	local is_valid, circle_id = true, 0
 	local root_id = ( EntityGetWithTag( "room_root" ) or {})[1]
-	if( pen.vld( root_id, true )) then
-		local r_x, r_y = EntityGetTransform( root_id )
-		local d = math.sqrt(( r_x - x )^2 + ( r_y - y )^2 ); is_valid = d > 1000
-		local radius = tonumber( GlobalsGetValue( "HIISI_MASSACRE_RADIUS", "2000" ))
-		for i = 1,10 do
-			if( is_valid and d > radius*( i - 1 ) and d < radius*i ) then circle_id = i end
-			if( d > radius*( i - 0.1 ) and d < radius*( i + 0.1 )) then
-				local off_x, off_y = is_vertical and 85 or 155, is_vertical and 155 or 85
-				local path = "mods/hiisi_massacre/files/rooms/stub_"..( is_vertical and "v" or "h" ).."_"
-				LoadPixelScene( path.."phys.png", path.."vis.png", x - off_x, y - off_y, path.."bg.png", true, false )
-				break
-			end
+	local r_x, r_y = EntityGetTransform( root_id )
+	local is_valid, circle_id = true, 0
+
+	if( not( pen.vld( root_id, true ))) then return end
+	local d = math.sqrt(( r_x - x )^2 + ( r_y - y )^2 ); is_valid = d > 1000
+	local radius = tonumber( GlobalsGetValue( "HIISI_MASSACRE_RADIUS", "2000" ))
+	
+	for i = 1,10 do
+		if( is_valid and d > radius*( i - 1 ) and d < radius*i ) then circle_id = i end
+		if( d > radius*( i - 0.1 ) and d < radius*( i + 0.1 )) then
+			local off_x, off_y = is_vertical and 85 or 155, is_vertical and 155 or 85
+			local path = "mods/hiisi_massacre/files/rooms/stub_"..( is_vertical and "v" or "h" ).."_"
+			LoadPixelScene( path.."phys.png", path.."vis.png", x - off_x, y - off_y, path.."bg.png", true, false )
+			return
 		end
 	end
 
@@ -112,23 +113,39 @@ function cell_gen( x, y, is_vertical, type )
 	pen.magic_storage( id, "mob_count", "value_int", pen.random( 0, 7 ))
 	if( not( is_valid )) then pen.magic_storage( id, "is_occupied", "value_bool", true ) end
 
-	local matter_rng = {
+	if( d < 500 ) then return end
+
+	local type_rng = {
+		{ n = "a", weight = 15 },
+		{ n = "b", weight = 5 },
+		{ n = "c", weight = 3 },
+		-- { n = "d", weight = 1 },
+		-- { n = "e", weight = 1 },
+	}
+	
+	local is_alt = false--pen.vrandom( x + y, 1, 10 ) == 10
+	type = type..pen.t.random( type_rng ).n..( is_alt and "b" or "a" )
+	pen.magic_storage( id, "type", "value_string", type )
+
+	local phys_path = "mods/hiisi_massacre/files/rooms/cell_"..type.."_phys.png"
+	local vis_path = "mods/hiisi_massacre/files/rooms/cell_"..type.."_vis.png"
+	local bg_path = "mods/hiisi_massacre/files/rooms/cell_"..type.."_bg.png"
+
+	if( not( ModDoesFileExist( vis_path ))) then
+		vis_path = "mods/hiisi_massacre/files/rooms/cell_"..( is_vertical and "b" or "a" ).."_vis.png" end
+	if( not( ModDoesFileExist( bg_path ))) then bg_path = "" end
+	
+	local off_x, off_y = is_vertical and 70 or 140, is_vertical and 140 or 70
+	LoadPixelScene( phys_path, vis_path, x - off_x, y - off_y, bg_path, true, false, {
 		["fff0bbaa"] = { --passive
 			"water", "oil", "alcohol", },
 		["fff0bbbb"] = { --dangeours
 			"radioactive_liquid" },
 		["fff0bbcc"] = { --magic
-			 },
+			"magic_liquid" },
 		["fff0bbdd"] = { --chaos
-			 },
-	}
-
-	--vis and bg are optinal, check for file existance
-	local is_alt = false--pen.vrandom( x + y, 1, 10 ) == 10
-	local off_x, off_y = is_vertical and 70 or 140, is_vertical and 140 or 70
-	local path = "mods/hiisi_massacre/files/rooms/cell_"..type..( is_alt and "b" or "a" ).."_"
-	local vis_path = "mods/hiisi_massacre/files/rooms/cell_"..( is_vertical and "b" or "a" ).."_vis.png"
-	-- LoadPixelScene( path.."phys.png", vis_path, x - off_x, y - off_y, nil, true, false, matter_rng )
+			"void_liquid" },
+	})
 end
 
 for i = 1,( 16 + 32 ) do

@@ -14,10 +14,11 @@ function OnModInit()
 	]])
 	pen.magic_write( "data/biome/_biomes_all.xml", tostring( xml ))
 	
-	--align hub with the wang grid
+	--upon entering a room, the entire thing should light up
 	--add gates through the rings (rotate 180 between rings)
 	--custom currency + loot crates
 	--basic shop + meta storage for loot
+	--the pacing is rather low rn, make the spawns be in larger numbers and come in waves (up to 5)
 
 	--lua walls should be a vector module (do a universal prop module that allows for buttons and such with culling)
 	--port out key n40 firearm sections to index (add a section of "extra" for others to use)
