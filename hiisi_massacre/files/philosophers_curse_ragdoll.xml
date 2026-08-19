@@ -1,0 +1,19 @@
+<Entity name="effect_philosophers_curse_ragdoll" >
+	<MagicConvertMaterialComponent
+		kill_when_finished="0"
+		steps_per_frame="10"
+		from_material_tag="[meat]"
+		to_material="philosophers_legacy"
+		is_circle="1"
+		radius="10"
+		loop="1"
+    ></MagicConvertMaterialComponent>
+	
+	<LifetimeComponent
+        lifetime="20"
+    ></LifetimeComponent>
+	
+	<InheritTransformComponent
+		use_root_parent="1"
+	></InheritTransformComponent>
+</Entity>

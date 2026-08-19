@@ -13,11 +13,16 @@ function OnModInit()
 		></Biome>
 	]])
 	pen.magic_write( "data/biome/_biomes_all.xml", tostring( xml ))
+
+	pen.magic_append( "mods/index_core/files/_structure.lua", "mods/hiisi_massacre/files/index.lua", true )
 	
+	--make index structure better
+
+	--loot crates (physical with absorbable powder + background static ones with index-lootable items)
+	--currency is named "philosopher's legacy" and is useless by itself – gotta refine it to gold and the process takes time and reagents that are determined by the moon phase
+	--basic shop + meta storage for loot
 	--upon entering a room, the entire thing should light up
 	--add gates through the rings (rotate 180 between rings)
-	--custom currency + loot crates
-	--basic shop + meta storage for loot
 	--the pacing is rather low rn, make the spawns be in larger numbers and come in waves (up to 5)
 
 	--lua walls should be a vector module (do a universal prop module that allows for buttons and such with culling)
@@ -60,10 +65,16 @@ function OnWorldPreUpdate()
 			local e_x, e_y = pen.magic_spawner( r_x, r_y, shape, { 10, 20 }, { exc = {{ x, y, 20 }}})
 			if( pen.vld( e_x )) then
 				local eid = EntityLoad( enemy.path, e_x, e_y )
+
+				LoadGameEffectEntityTo( eid, "mods/hiisi_massacre/files/philosophers_curse.xml" )
+				local dmg_comp = EntityGetFirstComponentIncludingDisabled( eid, "DamageModelComponent" )
+				ComponentSetValue2( dmg_comp, "blood_spray_material", "blood_fading" )
+				ComponentSetValue2( dmg_comp, "ragdoll_material", "meat" )
+
 				pen.t.loop( EntityGetComponentIncludingDisabled( eid, "LuaComponent" ), function( i,comp )
-					if( ComponentGetValue2( comp, "script_death" ) == "data/scripts/items/drop_money.lua" ) then
-						EntityRemoveComponent( eid, comp )
-					end
+					local is_money = ComponentGetValue2( comp, "script_death" ) == "data/scripts/items/drop_money.lua"
+					local is_spam = ComponentGetValue2( comp, "script_damage_received" ) == "data/scripts/animals/leader_damage.lua"
+					if( is_money or is_spam ) then EntityRemoveComponent( eid, comp ) end
 				end)
 			end
 		end

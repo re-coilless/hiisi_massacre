@@ -1,0 +1,13 @@
+<Entity name="effect_philosophers_curse" >
+	<GameEffectComponent
+		frames="-1"
+		effect="CUSTOM"
+		custom_effect_id=""
+		ragdoll_effect="CUSTOM_RAGDOLL_ENTITY"
+		ragdoll_effect_custom_entity_file="mods/hiisi_massacre/files/philosophers_curse_ragdoll.xml"
+	></GameEffectComponent>
+	
+	<InheritTransformComponent
+		use_root_parent="1"
+	></InheritTransformComponent>
+</Entity>

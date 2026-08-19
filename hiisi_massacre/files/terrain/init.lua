@@ -92,7 +92,7 @@ function cell_gen( x, y, is_vertical, type )
 	local is_valid, circle_id = true, 0
 
 	if( not( pen.vld( root_id, true ))) then return end
-	local d = math.sqrt(( r_x - x )^2 + ( r_y - y )^2 ); is_valid = d > 1000
+	local d = math.sqrt(( r_x - x )^2 + ( r_y - y )^2 ); is_valid = d > 750
 	local radius = tonumber( GlobalsGetValue( "HIISI_MASSACRE_RADIUS", "2000" ))
 	
 	for i = 1,10 do
@@ -101,7 +101,7 @@ function cell_gen( x, y, is_vertical, type )
 			local off_x, off_y = is_vertical and 85 or 155, is_vertical and 155 or 85
 			local path = "mods/hiisi_massacre/files/rooms/stub_"..( is_vertical and "v" or "h" ).."_"
 			LoadPixelScene( path.."phys.png", path.."vis.png", x - off_x, y - off_y, path.."bg.png", true, false )
-			return
+			break
 		end
 	end
 
@@ -111,7 +111,7 @@ function cell_gen( x, y, is_vertical, type )
 
 	pen.magic_storage( id, "circle_id", "value_int", circle_id )
 	pen.magic_storage( id, "mob_count", "value_int", pen.random( 0, 7 ))
-	if( not( is_valid )) then pen.magic_storage( id, "is_occupied", "value_bool", true ) end
+	if( not( is_valid )) then return pen.magic_storage( id, "is_occupied", "value_bool", true ) end
 
 	if( d < 500 ) then return end
 

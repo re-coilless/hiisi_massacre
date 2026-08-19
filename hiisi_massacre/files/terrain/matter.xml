@@ -72,4 +72,51 @@
 			</Edge>
 		</Graphics>
 	</CellData>
+	
+	<CellData
+		name="philosophers_legacy"
+		ui_name="Philosopher's Legacy"
+		ui_desc=""
+
+		cell_type="liquid"
+		liquid_sand="1"
+		liquid_gravity="0.9"
+		wang_color="ff540000"
+		tags="[alchemy]"
+		show_in_creative_mode="1"
+
+		hp="800"
+		durability="4"
+		density="6"
+		requires_oxygen="1"
+
+		on_fire="0"
+		burnable="0"
+		generates_smoke="0"
+		temperature_of_fire="10"
+
+		audio_physics_material_event="sand"
+		audio_physics_material_wall="sand"
+		audio_physics_material_solid="sand"
+
+		><Graphics
+			texture_file="mods/hiisi_massacre/files/philosophers_legacy.png"
+			color="ff540000"
+
+			><Edge>
+				<EdgeGraphics
+					type="EVERYWHERE"
+					overwrite="0" percent="0.6" z="1"
+					require_same_material="1" require_same_material_type="1"
+					
+					><Images>
+						<Image
+							allow_random_rotation="1"
+							filename="mods/hiisi_massacre/files/philosophers_legacy_edge.png"
+						></Image>
+					</Images>
+				</EdgeGraphics>
+			</Edge>
+		</Graphics>
+	</CellData>
 </Materials>
