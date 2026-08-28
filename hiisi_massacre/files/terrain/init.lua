@@ -6,6 +6,9 @@ dofile_once( "data/scripts/biome_modifiers.lua" )
 
 dofile_once( "mods/index_core/files/_lib.lua" )
 
+--props
+RegisterSpawnFunction( 0xff0affaa, "loot_chest" )
+
 --horizontal
 RegisterSpawnFunction( 0xff0aaaaa, "cell_init_a01" )
 RegisterSpawnFunction( 0xff0aaaab, "cell_init_a02" )
@@ -67,6 +70,28 @@ RegisterSpawnFunction( 0xff1aaafb, "cell_init_b32" )
 --archetypes (inherent geometry; done through pixel scenes loaded on room gen): combat (platforms and cover), hallway (narrow passages and route obstructions), storage (small rooms and lots of doors), brewery (glass tanks with random liquids and useful props), volatile (suspended sections, explosives and lots of wood)
 --variants (enemies and loot, finer geometry): funny, ruins, ambush (enemy spawns have a chance to being retriggered), prison, armory
 --circles (additonal content layers, materials and decorations): Prologue (normal), Wastes (toxic), Abyss (flooded), Ruins (crumbling), Gehenna (burning with smoke everywhere), Crux (no enemies spawn statically, they come out of portals that open randomly + blaring alarms), Buffer (lots of turrents and heavily fortified positions), Masquerade (normal buffed enemies are bursting into abominations on death that are hostile to everything), Noose (bosses everywhere), Gates (very different enemies + all doors are always locked)
+
+function loot_chest( x, y )
+	local chest_id = EntityLoad( "mods/index_core/files/testing/chest.xml", x, y - 10 )
+	
+	local loot = {
+		"data/entities/items/wand_level_04_better.xml",
+		"data/entities/items/wand_unshuffle_04.xml",
+		"data/entities/items/wand_petri.xml",
+		"data/entities/items/wand_level_05_better.xml",
+		"data/entities/items/wand_unshuffle_05.xml",
+		"data/entities/items/wand_ruusu.xml",
+		"data/entities/items/wand_level_06_better.xml",
+		"data/entities/items/wand_unshuffle_06.xml",
+		"data/entities/items/wand_unshuffle_10.xml",
+	}
+
+	for i = 1,4 do
+		if( pen.random( 1, 10 ) > 5 ) then
+			EntityAddChild( chest_id, EntityLoad( pen.t.random( loot ), x, y ))
+		end
+	end
+end
 
 function cell_gen( x, y, is_vertical, type )
 	local may_gen = true

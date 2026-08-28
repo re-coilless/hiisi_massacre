@@ -15,15 +15,13 @@ function OnModInit()
 	pen.magic_write( "data/biome/_biomes_all.xml", tostring( xml ))
 
 	pen.magic_append( "mods/index_core/files/_structure.lua", "mods/hiisi_massacre/files/index.lua", true )
-	
-	--make index structure better
 
-	--loot crates (physical with absorbable powder + background static ones with index-lootable items)
+	--loot crates (physical with absorbable powder)
 	--currency is named "philosopher's legacy" and is useless by itself – gotta refine it to gold and the process takes time and reagents that are determined by the moon phase
 	--basic shop + meta storage for loot
 	--upon entering a room, the entire thing should light up
 	--add gates through the rings (rotate 180 between rings)
-	--the pacing is rather low rn, make the spawns be in larger numbers and come in waves (up to 5)
+	--the pacing is rather slow rn, make the spawns be in larger numbers and come in waves (up to 5)
 
 	--lua walls should be a vector module (do a universal prop module that allows for buttons and such with culling)
 	--port out key n40 firearm sections to index (add a section of "extra" for others to use)
@@ -96,7 +94,6 @@ function OnWorldPreUpdate()
 end
 
 --hub area
-	--start in a cell with hamis npc across from you, rat and frog are on the same side and above; kick the door out
 	--npc after the player goes away and returns (explains what to do; use talkit for speech, should be the headless dude from YAWB concept; is present on new game afterwards)
 	--dialogue should be in-world and narrated through talk-it (use vector module option)
 	--crafting system for custom perks and plot items (use both pixel materials and items on the floor)

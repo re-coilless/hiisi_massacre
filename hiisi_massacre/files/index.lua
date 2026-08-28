@@ -1,12 +1,14 @@
 local GLOBAL_MODES, GLOBAL_MUTATORS, APPLETS, BOSS_BARS,
-	WAND_STATS, SPELL_STATS, MATTER_DESCS, ITEM_CATS, GUI_STRUCT = unpack( index.STRUCT )
+	WAND_STATS, SPELL_STATS, MATTER_DESCS, ITEM_CATS, GUI_MODULES, GUI_STRUCT = unpack( index.STRUCT )
 
-index.STRUCT[9].vanilla_gold = GUI_STRUCT.gold
-GUI_STRUCT.gold = function( screen_w, screen_h, xys )
-    local xD = index.D
-    xys.gold = index.STRUCT[9].vanilla_gold( screen_w, screen_h, xys )
+table.insert( GLOBAL_MUTATORS, function()
+    index.D.can_tinker = true
+end)
 
-    local pic_x, pic_y = unpack( xys.gold )
+GUI_MODULES.gold2 = function( xD, xM, screen_w, screen_h, pos )
+    local pic_x, pic_y = unpack( pos )
+    local delta = { 0, 0 }
+
     pen.hallway( function()
         if( xD.gmod.menu_capable ) then return end
         
@@ -29,18 +31,21 @@ GUI_STRUCT.gold = function( screen_w, screen_h, xys )
 
         local le_money = math.floor( pen.estimate( "philosophers_legacy", count, "exp", count/1000 ))
         
-        local tip_x, tip_y = unpack( xys.hp )
         local v = pen.get_short_num( le_money )
         local tip = "Philosopher's Legacy: "..le_money
         local is_hovered = index.tipping( pic_x + 2.5, pic_y - 1, pen.Z.TIPS,
-            { 10.5 + pen.get_text_dims( v, true ), 8 }, tip, { pos = { tip_x - 44, tip_y }, is_left = true })
+            { 10.5 + pen.get_text_dims( v, true ), 8 }, tip, { pos = true, is_left = true })
         
-        local c = is_hovered and pen.P.VNL.YELLOW or pen.P.WHITE
-        pen.new.image( pic_x + 2.5, pic_y - 1.5, pen.Z.MAIN, "data/ui_gfx/hud/money.png", { color = c, has_shadow = true })
-        pen.new.text( pic_x + 13, pic_y, pen.Z.MAIN, v, { color = c, is_huge = false, has_shadow = true, alpha = 0.9 })
+        pen.new.image( pic_x + 3, pic_y, pen.Z.MAIN, "data/ui_gfx/hud/mana.png",
+            { color = pen.P.VNL[ is_hovered and "YELLOW" or "DAMAGE" ], has_shadow = true })
+        pen.new.text( pic_x + 13, pic_y, pen.Z.MAIN, v,
+            { color = is_hovered and pen.P.VNL.YELLOW or pen.P.WHITE, is_huge = false, has_shadow = true, alpha = 0.9 })
 
-        pic_y = pic_y + 8
+        delta[2] = 9
     end)
 
-    return { pic_x, pic_y }
+    return delta, { pic_x, pic_y }
 end
+
+local _,id = pen.t.get( GUI_STRUCT.top_right, "gold" )
+if( pen.vld( id )) then table.insert( GUI_STRUCT.top_right, id + 1, "gold2" ) end
