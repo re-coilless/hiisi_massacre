@@ -1,11 +1,18 @@
 local GLOBAL_MODES, GLOBAL_MUTATORS, APPLETS, BOSS_BARS,
 	WAND_STATS, SPELL_STATS, MATTER_DESCS, ITEM_CATS, GUI_MODULES, GUI_STRUCT = unpack( index.STRUCT )
 
-table.insert( GLOBAL_MUTATORS, function()
-    index.D.can_tinker = true
-end)
+table.insert( GLOBAL_MUTATORS, function() index.D.can_tinker = true end)
 
-GUI_MODULES.gold2 = function( xD, xM, screen_w, screen_h, pos )
+local _,gold_id = pen.t.get( GUI_STRUCT.top_right, "nums_gold" )
+if( not( pen.vld( gold_id ))) then
+    pen.t.loop( GUI_STRUCT.top_right, function( i,v )
+        if( type( i ) ~= "number" or type( v ) ~= "string" ) then return end
+        if( string.find( v, "^bars_" ) ~= nil ) then gold_id = i + 1 end
+    end)
+    table.insert( GUI_STRUCT.top_right, gold_id, "nums_gold" )
+end
+
+GUI_MODULES.nums_gold2 = function( xD, xM, screen_w, screen_h, pos )
     local pic_x, pic_y = unpack( pos )
     local delta = { 0, 0 }
 
@@ -47,5 +54,4 @@ GUI_MODULES.gold2 = function( xD, xM, screen_w, screen_h, pos )
     return delta, { pic_x, pic_y }
 end
 
-local _,id = pen.t.get( GUI_STRUCT.top_right, "gold" )
-if( pen.vld( id )) then table.insert( GUI_STRUCT.top_right, id + 1, "gold2" ) end
+table.insert( GUI_STRUCT.top_right, gold_id + 1, "nums_gold2" )
